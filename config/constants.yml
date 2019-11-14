@@ -1,0 +1,30 @@
+defaults: &defaults
+  domain: <%= "#{ENV['APP_DOMAIN']}" %>
+  scheme: http
+  basic_auth: true
+  # redis db name. db name should be int.
+  redis_db: 0
+  redis_host: localhost
+  user_agent:
+    mobile: !ruby/regexp /iPhone|Android/i
+    app_android: !ruby/regexp /AppAndroid/i
+    android: !ruby/regexp /Android/i
+    android_tablet: !ruby/regexp /(?!(Android.*Mobile)+)Android/i
+    ipad: !ruby/regexp /iPad/i
+  basic_user: <%= "#{ENV['APP_NAME']}_admin" %>
+  basic_pass: 4DWNVb5jY7FZmGYXMVUOoQ
+  delayed_job_num: 3
+#   google_client_id: 242716095248-j65lvgfkqrfbikqtelsk962ovpt1iq30.apps.googleusercontent.com
+#   google_client_secret: tGuRvt__ymC42K0fWGMJZaZq
+#   analytics_view_id: "ga:98300651"
+
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  basic_auth: false
